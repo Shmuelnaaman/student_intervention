@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Building a Student Intervention System
 Supervised Learning Project
 
@@ -38,3 +39,8 @@ Attributes for student-data.csv:
 - health - current health status (numeric: from 1 - very bad to 5 - very good)
 - absences - number of school absences (numeric: from 0 to 93)
 - passed - did the student pass the final exam (binary: yes or no)
+||||||| merged common ancestors
+=======
+# student_intervention
+The goal is to identify students who might need early intervention 
+>>>>>>> 7baa5cb118635632b1058d31013fe9f4ea0ec0f2
