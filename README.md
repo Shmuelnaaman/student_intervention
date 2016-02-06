@@ -1,9 +1,7 @@
 <<<<<<< HEAD
 # Building a Student Intervention System
-Supervised Learning Project
 
-## Template code
-Open the template iPython notebook student_intervention.ipynb and follow along.
+The goal is to identify students who might need early intervention - In this case we are solving a “classification problem”. Each student in the data set will be categorize according to the parameters as "need early intervention" or does not "need early intervention". The algorithm will fit each student into one of these categories.
 
 ## Dataset
 Attributes for student-data.csv:
