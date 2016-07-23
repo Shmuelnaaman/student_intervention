@@ -52,8 +52,10 @@
 .highlight .err { border: 1px solid #FF0000 } /* Error */
 .highlight .k { color: #008000; font-weight: bold } /* Keyword */
 .highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
 .highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
 .highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
 .highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
 .highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
 .highlight .gd { color: #A00000 } /* Generic.Deleted */
@@ -174,7 +176,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Project-2:-Supervised-Learning">Project 2: Supervised Learning<a class="anchor-link" href="#Project-2:-Supervised-Learning">&#182;</a></h1><h3 id="Building-a-Student-Intervention-System">Building a Student Intervention System<a class="anchor-link" href="#Building-a-Student-Intervention-System">&#182;</a></h3>
+<h1 id="Supervised-Learning">Supervised Learning<a class="anchor-link" href="#Supervised-Learning">&#182;</a></h1><h3 id="Building-a-Student-Intervention-System">Building a Student Intervention System<a class="anchor-link" href="#Building-a-Student-Intervention-System">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -183,17 +185,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="1.-Classification-vs-Regression">1. Classification vs Regression<a class="anchor-link" href="#1.-Classification-vs-Regression">&#182;</a></h2><p>The goal is to identify students who might need early intervention - which type of supervised machine learning problem is this, classification or regression? Why?</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="A1.-:">A1. :<a class="anchor-link" href="#A1.-:">&#182;</a></h3><p>In this case we are solving a “classification problem”. Each student in the data set will be categorize according to the parameters as "need early intervention" or does not "need early intervention". The algorithm will fit each student into one of these categories.</p>
+<h2 id="1.-Classification-vs-Regression">1. Classification vs Regression<a class="anchor-link" href="#1.-Classification-vs-Regression">&#182;</a></h2><p>The goal is to identify students who might need early intervention - In this case we are solving a “classification problem”. Each student in the data set will be categorize according to the parameters as "need early intervention" or does not "need early intervention". The algorithm will fit each student into one of these categories.</p>
 
 </div>
 </div>
@@ -213,14 +205,14 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Import libraries</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import libraries</span>
 <span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">f1_score</span>
-<span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">cross_validation</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">make_scorer</span>
-<span class="kn">from</span> <span class="nn">sklearn.grid_search</span> <span class="k">import</span> <span class="n">GridSearchCV</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">f1_score</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">cross_validation</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">make_scorer</span>
+<span class="kn">from</span> <span class="nn">sklearn.grid_search</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
 </pre></div>
 
 </div>
@@ -233,10 +225,10 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Read student data</span>
-<span class="n">student_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&quot;F:</span><span class="se">\\</span><span class="s">Nanodegree</span><span class="se">\\</span><span class="s">student_intervention</span><span class="se">\\</span><span class="s">student-data.csv&quot;</span><span class="p">)</span>
-<span class="nb">print</span> <span class="p">(</span><span class="s">&quot;Student data read successfully!&quot;</span><span class="p">)</span>
-<span class="c"># Note: The last column &#39;passed&#39; is the target/label, all other are feature columns</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Read student data</span>
+<span class="n">student_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;student-data.csv&quot;</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="s2">&quot;Student data read successfully!&quot;</span><span class="p">)</span>
+<span class="c1"># Note: The last column &#39;passed&#39; is the target/label, all other are feature columns</span>
 </pre></div>
 
 </div>
@@ -258,40 +250,25 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Some statistics facts about the dataset?</p>
-<ul>
-<li>Total number of students : 395</li>
-<li>Number of students who passed : 265</li>
-<li>Number of students who failed : 130</li>
-<li>Graduation rate of the class (%) :  67%</li>
-<li>Number of features : 31</li>
-</ul>
-
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Compute desired values </span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Compute desired values </span>
 <span class="n">n_students</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="p">)</span>
-<span class="n">n_features</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-<span class="n">n_passed</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="p">[</span><span class="n">student_data</span><span class="p">[</span><span class="s">&#39;passed&#39;</span><span class="p">]</span><span class="o">==</span><span class="s">&#39;yes&#39;</span><span class="p">])</span>
-<span class="n">n_failed</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="p">[</span><span class="n">student_data</span><span class="p">[</span><span class="s">&#39;passed&#39;</span><span class="p">]</span><span class="o">==</span><span class="s">&#39;no&#39;</span><span class="p">])</span>
-<span class="n">grad_rate</span> <span class="o">=</span><span class="mi">100</span><span class="o">*</span> <span class="n">n_passed</span><span class="o">/</span><span class="n">n_students</span>   
+<span class="n">n_features</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+<span class="n">n_passed</span>   <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="p">[</span><span class="n">student_data</span><span class="p">[</span><span class="s1">&#39;passed&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;yes&#39;</span><span class="p">])</span>
+<span class="n">n_failed</span>   <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="p">[</span><span class="n">student_data</span><span class="p">[</span><span class="s1">&#39;passed&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;no&#39;</span><span class="p">])</span>
+<span class="n">grad_rate</span>  <span class="o">=</span> <span class="mi">100</span><span class="o">*</span><span class="n">n_passed</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">n_students</span><span class="p">)</span>
 
-<span class="nb">print</span> <span class="p">(</span><span class="s">&quot;Total number of students: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_students</span><span class="p">))</span>
-<span class="nb">print</span> <span class="p">(</span><span class="s">&quot;Number of students who passed: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_passed</span><span class="p">))</span>
-<span class="nb">print</span> <span class="p">(</span><span class="s">&quot;Number of students who failed: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_failed</span><span class="p">))</span>
-<span class="nb">print</span> <span class="p">(</span><span class="s">&quot;Number of features: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_features</span><span class="p">))</span>
-<span class="nb">print</span> <span class="p">(</span><span class="s">&quot;Graduation rate of the class: {:.2f}%&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">grad_rate</span><span class="p">))</span>
+<span class="k">print</span> <span class="p">(</span><span class="s2">&quot;Some statistics facts about the dataset&quot;</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="p">(</span><span class="s2">&quot; - Total number of students: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_students</span><span class="p">))</span>
+<span class="k">print</span> <span class="p">(</span><span class="s2">&quot; - Number of students who passed: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_passed</span><span class="p">))</span>
+<span class="k">print</span> <span class="p">(</span><span class="s2">&quot; - Number of students who failed: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_failed</span><span class="p">))</span>
+<span class="k">print</span> <span class="p">(</span><span class="s2">&quot; - Number of features: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_features</span><span class="p">))</span>
+<span class="k">print</span> <span class="p">(</span><span class="s2">&quot; - Graduation rate of the class: {:.2f}%&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">grad_rate</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -304,11 +281,12 @@ div#notebook {
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Total number of students: 395
-Number of students who passed: 265
-Number of students who failed: 130
-Number of features: 31
-Graduation rate of the class: 67.09%
+<pre>Some statistics facts about the dataset
+ - Total number of students: 395
+ - Number of students who passed: 265
+ - Number of students who failed: 130
+ - Number of features: 30
+ - Graduation rate of the class: 67.09%
 </pre>
 </div>
 </div>
@@ -334,16 +312,16 @@ Graduation rate of the class: 67.09%
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Extract feature (X) and target (y) columns</span>
-<span class="n">feature_cols</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">student_data</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c"># all columns but last are features</span>
-<span class="n">target_col</span> <span class="o">=</span> <span class="n">student_data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c"># last column is the target/label</span>
-<span class="nb">print</span> <span class="p">(</span><span class="s">&quot;Feature column(s):-</span><span class="se">\n</span><span class="s">{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">feature_cols</span><span class="p">))</span>
-<span class="nb">print</span> <span class="p">(</span><span class="s">&quot;Target column: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">target_col</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Extract feature (X) and target (y) columns</span>
+<span class="n">feature_cols</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">student_data</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># all columns but last are features</span>
+<span class="n">target_col</span> <span class="o">=</span> <span class="n">student_data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># last column is the target/label</span>
+<span class="k">print</span> <span class="p">(</span><span class="s2">&quot;Feature column(s):-</span><span class="se">\n</span><span class="s2">{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">feature_cols</span><span class="p">))</span>
+<span class="k">print</span> <span class="p">(</span><span class="s2">&quot;Target column: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">target_col</span><span class="p">))</span>
 
-<span class="n">X_all</span> <span class="o">=</span> <span class="n">student_data</span><span class="p">[</span><span class="n">feature_cols</span><span class="p">]</span>  <span class="c"># feature values for all students</span>
-<span class="n">y_all</span> <span class="o">=</span> <span class="n">student_data</span><span class="p">[</span><span class="n">target_col</span><span class="p">]</span>  <span class="c"># corresponding targets/labels</span>
-<span class="nb">print</span> <span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">Feature values:-&quot;</span><span class="p">)</span>
-<span class="n">X_all</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>  <span class="c"># print the first 5 rows</span>
+<span class="n">X_all</span> <span class="o">=</span> <span class="n">student_data</span><span class="p">[</span><span class="n">feature_cols</span><span class="p">]</span>  <span class="c1"># feature values for all students</span>
+<span class="n">y_all</span> <span class="o">=</span> <span class="n">student_data</span><span class="p">[</span><span class="n">target_col</span><span class="p">]</span>  <span class="c1"># corresponding targets/labels</span>
+<span class="k">print</span> <span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Feature values:-&quot;</span><span class="p">)</span>
+<span class="n">X_all</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>  <span class="c1"># print the first 5 rows</span>
 </pre></div>
 
 </div>
@@ -546,28 +524,28 @@ Feature values:-
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Preprocess feature columns</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Preprocess feature columns</span>
 <span class="k">def</span> <span class="nf">preprocess_features</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
-    <span class="n">outX</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>  <span class="c"># output dataframe, initially empty</span>
+    <span class="n">outX</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>  <span class="c1"># output dataframe, initially empty</span>
 
-    <span class="c"># Check each column</span>
+    <span class="c1"># Check each column</span>
     <span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">col_data</span> <span class="ow">in</span> <span class="n">X</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
-        <span class="c"># If data type is non-numeric, try to replace all yes/no values with 1/0</span>
+        <span class="c1"># If data type is non-numeric, try to replace all yes/no values with 1/0</span>
         <span class="k">if</span> <span class="n">col_data</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="nb">object</span><span class="p">:</span>
-            <span class="n">col_data</span> <span class="o">=</span> <span class="n">col_data</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="s">&#39;yes&#39;</span><span class="p">,</span> <span class="s">&#39;no&#39;</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-        <span class="c"># Note: This should change the data type for yes/no columns to int</span>
+            <span class="n">col_data</span> <span class="o">=</span> <span class="n">col_data</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="s1">&#39;yes&#39;</span><span class="p">,</span> <span class="s1">&#39;no&#39;</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="c1"># Note: This should change the data type for yes/no columns to int</span>
 
-        <span class="c"># If still non-numeric, convert to one or more dummy variables</span>
+        <span class="c1"># If still non-numeric, convert to one or more dummy variables</span>
         <span class="k">if</span> <span class="n">col_data</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="nb">object</span><span class="p">:</span>
             <span class="n">col_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">col_data</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">col</span><span class="p">)</span>  
-            <span class="c"># e.g. &#39;school&#39; =&gt; &#39;school_GP&#39;, &#39;school_MS&#39;</span>
+            <span class="c1"># e.g. &#39;school&#39; =&gt; &#39;school_GP&#39;, &#39;school_MS&#39;</span>
 
-        <span class="n">outX</span> <span class="o">=</span> <span class="n">outX</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">col_data</span><span class="p">)</span>  <span class="c"># collect column(s) in output dataframe</span>
+        <span class="n">outX</span> <span class="o">=</span> <span class="n">outX</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">col_data</span><span class="p">)</span>  <span class="c1"># collect column(s) in output dataframe</span>
 
     <span class="k">return</span> <span class="n">outX</span>
 
 <span class="n">X_all</span> <span class="o">=</span> <span class="n">preprocess_features</span><span class="p">(</span><span class="n">X_all</span><span class="p">)</span>
-<span class="nb">print</span> <span class="p">(</span><span class="s">&quot;Processed feature columns ({}):-</span><span class="se">\n</span><span class="s">{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_all</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="nb">list</span><span class="p">(</span><span class="n">X_all</span><span class="o">.</span><span class="n">columns</span><span class="p">)))</span>
+<span class="k">print</span> <span class="p">(</span><span class="s2">&quot;Processed feature columns ({}):-</span><span class="se">\n</span><span class="s2">{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_all</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="nb">list</span><span class="p">(</span><span class="n">X_all</span><span class="o">.</span><span class="n">columns</span><span class="p">)))</span>
 </pre></div>
 
 </div>
@@ -595,7 +573,7 @@ Feature values:-
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Split-data-into-training-and-test-sets">Split data into training and test sets<a class="anchor-link" href="#Split-data-into-training-and-test-sets">&#182;</a></h3><p>So far, we have converted all <em>categorical</em> features into numeric values. In this next step, we split the data (both features and corresponding labels) into training and test sets.</p>
+<h3 id="Split-data-into-training-and-test-sets">Split data into training and test sets<a class="anchor-link" href="#Split-data-into-training-and-test-sets">&#182;</a></h3><p>So far, we have converted all <em>categorical</em> features into numeric values. Next, we split the data (both features and corresponding labels) into training and test sets. In addition I set the random state of the train_test_split function so the results will be reproducible.</p>
 
 </div>
 </div>
@@ -605,21 +583,19 @@ Feature values:-
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># First, decide how many training vs test samples you want</span>
-<span class="n">num_all</span> <span class="o">=</span> <span class="n">student_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c"># same as len(student_data)</span>
-<span class="n">num_train</span> <span class="o">=</span> <span class="mi">300</span>  <span class="c"># about 75% of the data</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># First, decide how many training vs test samples you want</span>
+<span class="n">num_all</span> <span class="o">=</span> <span class="n">student_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># same as len(student_data)</span>
+<span class="n">num_train</span> <span class="o">=</span> <span class="mi">300</span>  <span class="c1"># about 75% of the data</span>
 <span class="n">num_test</span> <span class="o">=</span> <span class="n">num_all</span> <span class="o">-</span> <span class="n">num_train</span>
 
-<span class="c"># TODO: Then, select features (X) and corresponding labels (y) for the training and test sets</span>
-<span class="c"># Note: Shuffle the data or randomly select samples to avoid any bias due to ordering in the dataset</span>
+<span class="c1"># Select features (X) and corresponding labels (y) for the training and test sets</span>
+<span class="c1"># Note: Shuffle the data or randomly select samples to avoid any bias due to ordering in the dataset</span>
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">cross_validation</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">X_all</span><span class="p">,</span> 
                                                                      <span class="n">y_all</span><span class="p">,</span> 
-                                                                     <span class="n">test_size</span><span class="o">=</span><span class="mf">0.24</span><span class="p">,</span> 
-                                                                     <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                                                                     <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.24</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">42</span><span class="p">)</span>
 
-<span class="nb">print</span> <span class="p">(</span><span class="s">&quot;Training set: {} samples&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-<span class="nb">print</span> <span class="p">(</span><span class="s">&quot;Test set: {} samples&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-<span class="c"># Note: If you need a validation set, extract it from within training data</span>
+<span class="k">print</span> <span class="p">(</span><span class="s2">&quot;Training set: {} samples&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="k">print</span> <span class="p">(</span><span class="s2">&quot;Test set: {} samples&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 </pre></div>
 
 </div>
@@ -647,11 +623,14 @@ Test set: 95 samples
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="4.-Training-and-Evaluating-Models">4. Training and Evaluating Models<a class="anchor-link" href="#4.-Training-and-Evaluating-Models">&#182;</a></h2><p>Choose 3 supervised learning models that are available in scikit-learn, and appropriate for this problem. For each model:</p>
+<h2 id="4.-Training-and-Evaluating-Models">4. Training and Evaluating Models<a class="anchor-link" href="#4.-Training-and-Evaluating-Models">&#182;</a></h2><p>Next I choose three supervised learning models that are available in scikit-learn, and appropriate for this problem.</p>
+<p>For each model :</p>
 <ul>
-<li>What are the general applications of this model? What are its strengths and weaknesses?</li>
-<li>Given what you know about the data so far, why did you choose this model to apply?</li>
-<li>Fit this model to the training data, try to predict labels (for both training and test sets), and measure the F<sub>1</sub> score. Repeat this process with different training set sizes (100, 200, 300), keeping test set constant.</li>
+<li>Discussion about the general applications of the model. The strength and weaknesses of the model.</li>
+<li><p>Reasons for choosing this model.</p>
+</li>
+<li><p>Fit the model to the training data, predict labels (for both training and test sets), and measure the F<sub>1</sub> score with different training set sizes (100, 200, 300), keeping test set constant.</p>
+</li>
 </ul>
 <p>Produce a table showing training time, prediction time, F<sub>1</sub> score on training set and F<sub>1</sub> score on test set, for each training set size.</p>
 
@@ -663,10 +642,22 @@ Test set: 95 samples
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Support-Vector-Machines-Classification-O(n3):">Support Vector Machines Classification O(n3):<a class="anchor-link" href="#Support-Vector-Machines-Classification-O(n3):">&#182;</a></h2><h3 id="General-applications:">General applications:<a class="anchor-link" href="#General-applications:">&#182;</a></h3><p>Given, data points that belong into two clusters, each data point can be represented by a n-dimensional vector. It is possible to find many n-1 dimensional hyper planes that will separate the data points into two clusters. Support Vector Machines Classification will find the hyper plane that represents the hyper plane with maximum separation or margins. SVM is helpful in text categorization, images classifications, highly efficient in protein classifications and classification of hand writers’ characters.</p>
-<h3 id="Strengths:">Strengths:<a class="anchor-link" href="#Strengths:">&#182;</a></h3><p>Several specialized algorithms that enable quick solving of the quadratic programming problem arise from the model. Kernel SVM is available in many toolkits. For images classifications SVMs achieve significantly higher search accuracy than traditional query refinement schemes.</p>
-<h3 id="Weaknesses:">Weaknesses:<a class="anchor-link" href="#Weaknesses:">&#182;</a></h3><p>The model is not easy to interpret. The classification is into two class and the solution is uncelebrated (we cannot estimate the degree of certainty of a given solutions). All input data must be labeled (no unsupervised learning).</p>
-<h3 id="Why-did-you-choose-this-model-to-apply?">Why did you choose this model to apply?<a class="anchor-link" href="#Why-did-you-choose-this-model-to-apply?">&#182;</a></h3><p>The structure of the data set is a classic case for SVM, each label can be describe with a vector of values. The problem that we want to solve is classification. I hope that the training will be done in a short time. The solution that I need is binary and I do not care about the certainty for each student.</p>
+<h2 id="Support-Vector-Machines-Classification-O(n3):">Support Vector Machines Classification O(n3):<a class="anchor-link" href="#Support-Vector-Machines-Classification-O(n3):">&#182;</a></h2><h3 id="General-applications:">General applications:<a class="anchor-link" href="#General-applications:">&#182;</a></h3><p>Given, data points that belong into two clusters, each data point can be represented by a n-dimensional vector. It is possible to find many n-1 dimensional hyper planes that will separate the data points into two clusters. Support Vector Machines Classification will find the hyper plane with maximum separation or margins.</p>
+<h3 id="general-applications">general applications<a class="anchor-link" href="#general-applications">&#182;</a></h3><p>SVM is helpful in text categorization, images classifications, highly efficient in protein classifications and classification of hand writers’ characters.</p>
+<h3 id="The-advantages-of-support-vector-machines-are:">The advantages of support vector machines are:<a class="anchor-link" href="#The-advantages-of-support-vector-machines-are:">&#182;</a></h3><ul>
+<li>Effective in high dimensional spaces.</li>
+<li>Still effective in cases where number of dimensions is greater than the number of samples.</li>
+<li>Uses a subset of training points in the decision function (called support vectors), so it is also memory efficient.</li>
+<li>Versatile: different Kernel functions can be specified for the decision function. Common kernels are provided, but it is also </li>
+<li>possible to specify custom kernels.</li>
+</ul>
+<h3 id="The-disadvantages-of-support-vector-machines-include:">The disadvantages of support vector machines include:<a class="anchor-link" href="#The-disadvantages-of-support-vector-machines-include:">&#182;</a></h3><ul>
+<li>If the number of features is much greater than the number of samples, the method is likely to give poor performances.</li>
+<li>SVMs do not directly provide probability estimates, these are calculated using an expensive five-fold cross-validation (see Scores and probabilities, below).</li>
+<li>Several specialized algorithms enable quick solution of the quadratic programming problem. Kernel SVM is available in many toolkits. SVM is able to separate feature spaces that are not linearly separated. SVM is effective for problem with high dimensional space. SVM is effective for cases where number of dimensions is greater than the number of samples.  SVM is Memory efficient. [ <a href="http://scikit-learn.org/stable/modules/svm.html">http://scikit-learn.org/stable/modules/svm.html</a> ]</li>
+<li>Parameters of a solved model are difficult to interpret [ <a href="https://en.wikipedia.org/wiki/Support_vector_machine">https://en.wikipedia.org/wiki/Support_vector_machine</a> ]. The classification is into two class and the solution is un-celebrated (we cannot estimate the degree of certainty of a given solutions). All input data must be labeled (no unsupervised learning). If the number of features is much greater than the number of samples, the method is likely to give poor performances</li>
+</ul>
+<h3 id="Reasons-for-choosing-this-model.">Reasons for choosing this model.<a class="anchor-link" href="#Reasons-for-choosing-this-model.">&#182;</a></h3><p>The structure of the data set is a classic case for SVM, each label can be describe with a vector of values. The problem that we want to solve is classification. The fact that the data set is small will make sure that the training will be done in a short time. The data set might not be high dimensional but consider the small size of the data set, seems as SVM will have an advantage with the data set.</p>
 
 </div>
 </div>
@@ -676,22 +667,21 @@ Test set: 95 samples
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Train a model</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Train a model</span>
 
 <span class="k">def</span> <span class="nf">train_classifier</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">):</span>
-    <span class="nb">print</span> <span class="p">(</span><span class="s">&quot;Training {}...&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">))</span>
+    <span class="k">print</span> <span class="p">(</span><span class="s2">&quot;Training {}...&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">))</span>
     <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
     <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="nb">print</span> <span class="p">(</span><span class="s">&quot;Done!</span><span class="se">\n</span><span class="s">Training time (secs): {:.3f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">))</span>
+    <span class="k">print</span> <span class="p">(</span><span class="s2">&quot;Done!</span><span class="se">\n</span><span class="s2">Training time (secs): {:.3f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">))</span>
 
-<span class="c"># TODO: Choose a model, import it and instantiate an object</span>
-<span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">svm</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># Choose a model, import it and instantiate an object</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">svm</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">()</span>
 
-<span class="c"># Fit model to training data</span>
-<span class="n">train_classifier</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>  <span class="c"># note: using entire training set here</span>
-<span class="c">#print clf  # you can inspect the learned model by printing it</span>
+<span class="c1"># Fit model to training data</span>
+<span class="n">train_classifier</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>  <span class="c1"># note: using entire training set here</span>
 </pre></div>
 
 </div>
@@ -706,7 +696,7 @@ Test set: 95 samples
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Training SVC...
 Done!
-Training time (secs): 0.011
+Training time (secs): 0.023
 </pre>
 </div>
 </div>
@@ -720,18 +710,18 @@ Training time (secs): 0.011
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Predict on training set and compute F1 score</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Predict on training set and compute F1 score</span>
 
 <span class="k">def</span> <span class="nf">predict_labels</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
-    <span class="nb">print</span> <span class="p">(</span><span class="s">&quot;Predicting labels using {}...&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">))</span>
+    <span class="k">print</span> <span class="p">(</span><span class="s2">&quot;Predicting labels using {}...&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">))</span>
     <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     <span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
     <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="nb">print</span> <span class="p">(</span><span class="s">&quot;Done!</span><span class="se">\n</span><span class="s">Prediction time (secs): {:.3f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="s">&#39;yes&#39;</span><span class="p">)</span>
+    <span class="k">print</span> <span class="p">(</span><span class="s2">&quot;Done!</span><span class="se">\n</span><span class="s2">Prediction time (secs): {:.3f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="s1">&#39;yes&#39;</span><span class="p">)</span>
 
 <span class="n">train_f1_score</span> <span class="o">=</span> <span class="n">predict_labels</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="nb">print</span> <span class="p">(</span><span class="s">&quot;F1 score for training set: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">train_f1_score</span><span class="p">))</span>
+<span class="k">print</span> <span class="p">(</span><span class="s2">&quot;F1 score for training set: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">train_f1_score</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -746,8 +736,8 @@ Training time (secs): 0.011
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Predicting labels using SVC...
 Done!
-Prediction time (secs): 0.011
-F1 score for training set: 0.9135254988913526
+Prediction time (secs): 0.013
+F1 score for training set: 0.876068376068
 </pre>
 </div>
 </div>
@@ -761,8 +751,8 @@ F1 score for training set: 0.9135254988913526
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Predict on test data</span>
-<span class="nb">print</span> <span class="p">(</span><span class="s">&quot;F1 score for test set: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">predict_labels</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Predict on test data</span>
+<span class="k">print</span> <span class="p">(</span><span class="s2">&quot;F1 score for test set: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">predict_labels</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
 </pre></div>
 
 </div>
@@ -777,8 +767,8 @@ F1 score for training set: 0.9135254988913526
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Predicting labels using SVC...
 Done!
-Prediction time (secs): 0.006
-F1 score for test set: 0.7464788732394366
+Prediction time (secs): 0.005
+F1 score for test set: 0.783783783784
 </pre>
 </div>
 </div>
@@ -792,20 +782,20 @@ F1 score for test set: 0.7464788732394366
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Train and predict using different training set sizes</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Train and predict using different training set sizes</span>
 <span class="k">def</span> <span class="nf">train_predict</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">):</span>
-    <span class="nb">print</span> <span class="p">(</span><span class="s">&quot;------------------------------------------&quot;</span><span class="p">)</span>
-    <span class="nb">print</span> <span class="p">(</span><span class="s">&quot;Training set size: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">)))</span>
+    <span class="k">print</span> <span class="p">(</span><span class="s2">&quot;------------------------------------------&quot;</span><span class="p">)</span>
+    <span class="k">print</span> <span class="p">(</span><span class="s2">&quot;Training set size: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">)))</span>
     <span class="n">train_classifier</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-    <span class="nb">print</span> <span class="p">(</span><span class="s">&quot;F1 score for training set: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">predict_labels</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)))</span>
-    <span class="nb">print</span> <span class="p">(</span><span class="s">&quot;F1 score for test set: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">predict_labels</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+    <span class="k">print</span> <span class="p">(</span><span class="s2">&quot;F1 score for training set: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">predict_labels</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)))</span>
+    <span class="k">print</span> <span class="p">(</span><span class="s2">&quot;F1 score for test set: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">predict_labels</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
 
 <span class="n">train_predict</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">],</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 <span class="n">train_predict</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">200</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">200</span><span class="p">],</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 <span class="n">train_predict</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 
-<span class="c"># TODO: Run the helper function above for desired subsets of training data</span>
-<span class="c"># Note: Keep the test set constant</span>
+<span class="c1"># TODO: Run the helper function above for desired subsets of training data</span>
+<span class="c1"># Note: Keep the test set constant</span>
 </pre></div>
 
 </div>
@@ -822,28 +812,28 @@ F1 score for test set: 0.7464788732394366
 Training set size: 100
 Training SVC...
 Done!
-Training time (secs): 0.003
+Training time (secs): 0.004
+Predicting labels using SVC...
+Done!
+Prediction time (secs): 0.003
+F1 score for training set: 0.877697841727
 Predicting labels using SVC...
 Done!
 Prediction time (secs): 0.002
-F1 score for training set: 0.9343065693430657
-Predicting labels using SVC...
-Done!
-Prediction time (secs): 0.001
-F1 score for test set: 0.7801418439716312
+F1 score for test set: 0.774647887324
 ------------------------------------------
 Training set size: 200
 Training SVC...
 Done!
-Training time (secs): 0.008
+Training time (secs): 0.013
 Predicting labels using SVC...
 Done!
-Prediction time (secs): 0.005
-F1 score for training set: 0.910958904109589
+Prediction time (secs): 0.006
+F1 score for training set: 0.867924528302
 Predicting labels using SVC...
 Done!
 Prediction time (secs): 0.003
-F1 score for test set: 0.7746478873239436
+F1 score for test set: 0.781456953642
 ------------------------------------------
 Training set size: 300
 Training SVC...
@@ -851,12 +841,12 @@ Done!
 Training time (secs): 0.016
 Predicting labels using SVC...
 Done!
-Prediction time (secs): 0.012
-F1 score for training set: 0.9135254988913526
+Prediction time (secs): 0.011
+F1 score for training set: 0.876068376068
 Predicting labels using SVC...
 Done!
 Prediction time (secs): 0.004
-F1 score for test set: 0.7464788732394366
+F1 score for test set: 0.783783783784
 </pre>
 </div>
 </div>
@@ -871,9 +861,9 @@ F1 score for test set: 0.7464788732394366
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="AdaBoost-Adaptive-Boosting-Classification">AdaBoost Adaptive Boosting Classification<a class="anchor-link" href="#AdaBoost-Adaptive-Boosting-Classification">&#182;</a></h2><h3 id="General-applications:">General applications:<a class="anchor-link" href="#General-applications:">&#182;</a></h3><p>A Meta-algorithm that can be used in conjunction with other types of learning algorithms and improve their performance. The output of the other learning algorithms ('weak learners') is combined as a weighted sum to create the boosted classifier. AdaBoost used as a Standard algorithm for Face and object Detection,</p>
-<h3 id="Strengths:">Strengths:<a class="anchor-link" href="#Strengths:">&#182;</a></h3><p>Less susceptible to overfitting than other learning algorithms, the best out-of-the-box classifier.</p>
-<h3 id="Weaknesses:">Weaknesses:<a class="anchor-link" href="#Weaknesses:">&#182;</a></h3><p>Sensitive to uniform noisy data and outliers, AdaBoost depends on data and weak learner and can fail if weak classifiers are overfit or underfit.</p>
-<h3 id="Why-did-you-choose-this-model-to-apply?">Why did you choose this model to apply?<a class="anchor-link" href="#Why-did-you-choose-this-model-to-apply?">&#182;</a></h3><p>As part of the exploration I wanted to test a predictive model that will be less susceptible to overfitting and since Adaboost is consider the best out-of-the-box classifier, I wanted to check if a boosting model will do better.</p>
+<h3 id="Strengths:">Strengths:<a class="anchor-link" href="#Strengths:">&#182;</a></h3><p>AdaBoost is less susceptible to over fitting than other learning algorithms. AdaBoost is the best out-of-the-box classifier. AdaBoost is simple to implement. AdaBoost is can perform feature selection</p>
+<h3 id="Weaknesses:">Weaknesses:<a class="anchor-link" href="#Weaknesses:">&#182;</a></h3><p>AdaBoost is sensitive to uniform noisy data and outliers. AdaBoost depends on data and weak learner and can fail if weak classifiers are overfit or underfit.</p>
+<h3 id="Reasons-for-choosing-this-model.">Reasons for choosing this model.<a class="anchor-link" href="#Reasons-for-choosing-this-model.">&#182;</a></h3><p>As part of the exploration I wanted to test a predictive model that will be less susceptible to overfitting and since Adaboost is consider the best out-of-the-box classifier, I wanted to check if a boosting model will do better.</p>
 
 </div>
 </div>
@@ -883,15 +873,14 @@ F1 score for test set: 0.7464788732394366
 <div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Train a model</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Train a model</span>
 
-<span class="c"># TODO: Choose a model, import it and instantiate an object</span>
-<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="k">import</span> <span class="n">AdaBoostClassifier</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">AdaBoostClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># Choose a model, import it and instantiate an object</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">AdaBoostClassifier</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">AdaBoostClassifier</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">42</span> <span class="p">)</span>
 
-<span class="c"># Fit model to training data</span>
-<span class="n">train_classifier</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>  <span class="c"># note: using entire training set here</span>
-<span class="c">#print clf  # you can inspect the learned model by printing it</span>
+<span class="c1"># Fit model to training data</span>
+<span class="n">train_classifier</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>  <span class="c1"># note: using entire training set here</span>
 </pre></div>
 
 </div>
@@ -906,7 +895,7 @@ F1 score for test set: 0.7464788732394366
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Training AdaBoostClassifier...
 Done!
-Training time (secs): 0.005
+Training time (secs): 0.356
 </pre>
 </div>
 </div>
@@ -920,10 +909,10 @@ Training time (secs): 0.005
 <div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Predict on training set and compute F1 score</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Predict on training set and compute F1 score</span>
 
 <span class="n">train_f1_score</span> <span class="o">=</span> <span class="n">predict_labels</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="nb">print</span> <span class="p">(</span><span class="s">&quot;F1 score for training set: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">train_f1_score</span><span class="p">))</span>
+<span class="k">print</span> <span class="p">(</span><span class="s2">&quot;F1 score for training set: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">train_f1_score</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -938,8 +927,8 @@ Training time (secs): 0.005
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Predicting labels using AdaBoostClassifier...
 Done!
-Prediction time (secs): 0.003
-F1 score for training set: 0.8278867102396513
+Prediction time (secs): 0.023
+F1 score for training set: 0.863741339492
 </pre>
 </div>
 </div>
@@ -953,8 +942,8 @@ F1 score for training set: 0.8278867102396513
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Predict on test data</span>
-<span class="nb">print</span> <span class="p">(</span><span class="s">&quot;F1 score for test set: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">predict_labels</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Predict on test data</span>
+<span class="k">print</span> <span class="p">(</span><span class="s2">&quot;F1 score for test set: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">predict_labels</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
 </pre></div>
 
 </div>
@@ -969,8 +958,8 @@ F1 score for training set: 0.8278867102396513
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Predicting labels using AdaBoostClassifier...
 Done!
-Prediction time (secs): 0.002
-F1 score for test set: 0.7887323943661971
+Prediction time (secs): 0.021
+F1 score for test set: 0.781954887218
 </pre>
 </div>
 </div>
@@ -984,7 +973,7 @@ F1 score for test set: 0.7887323943661971
 <div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">train_predict</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">],</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_predict</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">],</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 <span class="n">train_predict</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">200</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">200</span><span class="p">],</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 <span class="n">train_predict</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 </pre></div>
@@ -1003,41 +992,41 @@ F1 score for test set: 0.7887323943661971
 Training set size: 100
 Training AdaBoostClassifier...
 Done!
-Training time (secs): 0.007
+Training time (secs): 0.271
 Predicting labels using AdaBoostClassifier...
 Done!
-Prediction time (secs): 0.001
-F1 score for training set: 0.8169014084507042
+Prediction time (secs): 0.016
+F1 score for training set: 0.948148148148
 Predicting labels using AdaBoostClassifier...
 Done!
-Prediction time (secs): 0.002
-F1 score for test set: 0.7887323943661971
+Prediction time (secs): 0.019
+F1 score for test set: 0.766917293233
 ------------------------------------------
 Training set size: 200
 Training AdaBoostClassifier...
 Done!
-Training time (secs): 0.005
+Training time (secs): 0.340
 Predicting labels using AdaBoostClassifier...
 Done!
-Prediction time (secs): 0.002
-F1 score for training set: 0.8243243243243242
+Prediction time (secs): 0.021
+F1 score for training set: 0.892733564014
 Predicting labels using AdaBoostClassifier...
 Done!
-Prediction time (secs): 0.001
-F1 score for test set: 0.7971014492753624
+Prediction time (secs): 0.015
+F1 score for test set: 0.828125
 ------------------------------------------
 Training set size: 300
 Training AdaBoostClassifier...
 Done!
-Training time (secs): 0.005
+Training time (secs): 0.330
 Predicting labels using AdaBoostClassifier...
 Done!
-Prediction time (secs): 0.000
-F1 score for training set: 0.8278867102396513
+Prediction time (secs): 0.021
+F1 score for training set: 0.863741339492
 Predicting labels using AdaBoostClassifier...
 Done!
-Prediction time (secs): 0.001
-F1 score for test set: 0.7887323943661971
+Prediction time (secs): 0.017
+F1 score for test set: 0.781954887218
 </pre>
 </div>
 </div>
@@ -1051,10 +1040,10 @@ F1 score for test set: 0.7887323943661971
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Extremely-Randomized-Trees">Extremely Randomized Trees<a class="anchor-link" href="#Extremely-Randomized-Trees">&#182;</a></h2><h3 id="General-applications:">General applications:<a class="anchor-link" href="#General-applications:">&#182;</a></h3><p>Ensemble learning method for classification, that construct a multitude decision trees at training, outputting the class of the individual trees. Random decision forests correct for decision trees' habit of overfitting to their training set. The algorithm, inducing random forest "bagging" idea and the random selection of features, in order to construct a collection of decision trees with controlled variance. Random forests use tree learning algorithm that selects, at each candidate split in the learning process, a random subset of the features. Extremely randomized trees or ExtraTrees are trained like in an ordinary random forest, but additionally the top-down splitting in the tree learner is randomized. Random forests can be used to rank the importance of variables in a regression or classification problem in a natural way.</p>
-<h3 id="Strengths:">Strengths:<a class="anchor-link" href="#Strengths:">&#182;</a></h3><p>More complex classifier (a larger forest) getting more accurate nearly monotonically.</p>
-<h3 id="Weaknesses:">Weaknesses:<a class="anchor-link" href="#Weaknesses:">&#182;</a></h3><p>For data including categorical variables with different number of levels, random forests are biased in favor of those attributes with more levels. If the data contain groups of correlated features of similar relevance for the output, then smaller groups are favored over larger groups.</p>
-<h3 id="Why-did-you-choose-this-model-to-apply?">Why did you choose this model to apply?<a class="anchor-link" href="#Why-did-you-choose-this-model-to-apply?">&#182;</a></h3><p>The fact that we deal with students and as we know humans are not easy to predict, a model that will include randomization in the process of creating classifiers might captured something that could not be captured by the well formulated models.</p>
+<h2 id="Extremely-Randomized-Trees">Extremely Randomized Trees<a class="anchor-link" href="#Extremely-Randomized-Trees">&#182;</a></h2><h3 id="General-applications:">General applications:<a class="anchor-link" href="#General-applications:">&#182;</a></h3><p>Ensemble learning method for classification, that construct a multitude decision trees at training, outputting the class of the individual trees. Random decision forests correct for decision trees' habit of overfitting to their training set. The algorithm, inducing random forest "bagging" idea and the random selection of features, in order to construct a collection of decision trees with controlled variance. Random forests use tree learning algorithm that selects, at each candidate split in the learning process, a random subset of the features. Extremely randomized trees or ExtraTrees are trained like in an ordinary random forest, but additionally the top-down splitting in the tree learner is randomized. Random forests can be used to rank the importance of variables in a regression or classification problem in a natural way. Hydrological problem. Computational intensive problems. Modelling of large datasets and input selection.</p>
+<h3 id="Strengths:">Strengths:<a class="anchor-link" href="#Strengths:">&#182;</a></h3><p>More complex classifier (a larger forest) getting more accurate nearly monotonically.  Combine the predictions of several base estimators built with a given learning algorithm in order to improve generalizability / robustness over a single estimator. effective option to balance accuracy and computational efficiency in data-driven modelling.[ <a href="http://www.hydrol-earth-syst-sci.net/17/2669/2013/hess-17-2669-2013.pdf">http://www.hydrol-earth-syst-sci.net/17/2669/2013/hess-17-2669-2013.pdf</a> ]</p>
+<h3 id="Weaknesses:">Weaknesses:<a class="anchor-link" href="#Weaknesses:">&#182;</a></h3><p>The larger the  number of trees in the forest the  better, but also the longer it will take to compute. The results will stop getting significantly better beyond a critical number of trees.</p>
+<h3 id="Reasons-for-choosing-this-model.">Reasons for choosing this model.<a class="anchor-link" href="#Reasons-for-choosing-this-model.">&#182;</a></h3><p>The fact that we deal with students and as we know humans are not easy to predict, a model that will include randomization in the process of creating classifiers might captured something that could not be captured by the well formulated models.</p>
 
 </div>
 </div>
@@ -1064,15 +1053,14 @@ F1 score for test set: 0.7887323943661971
 <div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Train a model</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Train a model</span>
 
-<span class="c"># TODO: Choose a model, import it and instantiate an object</span>
-<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="k">import</span> <span class="n">ExtraTreesClassifier</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">ExtraTreesClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+<span class="c1"># Choose a model, import it and instantiate an object</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">ExtraTreesClassifier</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">ExtraTreesClassifier</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">42</span><span class="p">)</span>
 
-<span class="c"># Fit model to training data</span>
-<span class="n">train_classifier</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>  <span class="c"># note: using entire training set here</span>
-<span class="c">#print clf  # you can inspect the learned model by printing it</span>
+<span class="c1"># Fit model to training data</span>
+<span class="n">train_classifier</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>  <span class="c1"># note: using entire training set here</span>
 </pre></div>
 
 </div>
@@ -1087,7 +1075,7 @@ F1 score for test set: 0.7887323943661971
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Training ExtraTreesClassifier...
 Done!
-Training time (secs): 0.093
+Training time (secs): 0.091
 </pre>
 </div>
 </div>
@@ -1101,10 +1089,10 @@ Training time (secs): 0.093
 <div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Predict on training set and compute F1 score</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Predict on training set and compute F1 score</span>
 
 <span class="n">train_f1_score</span> <span class="o">=</span> <span class="n">predict_labels</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="nb">print</span> <span class="p">(</span><span class="s">&quot;F1 score for training set: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">train_f1_score</span><span class="p">))</span>
+<span class="k">print</span> <span class="p">(</span><span class="s2">&quot;F1 score for training set: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">train_f1_score</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -1119,7 +1107,7 @@ Training time (secs): 0.093
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Predicting labels using ExtraTreesClassifier...
 Done!
-Prediction time (secs): 0.019
+Prediction time (secs): 0.005
 F1 score for training set: 1.0
 </pre>
 </div>
@@ -1134,8 +1122,8 @@ F1 score for training set: 1.0
 <div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># Predict on test data</span>
-<span class="nb">print</span> <span class="p">(</span><span class="s">&quot;F1 score for test set: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">predict_labels</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Predict on test data</span>
+<span class="k">print</span> <span class="p">(</span><span class="s2">&quot;F1 score for test set: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">predict_labels</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
 </pre></div>
 
 </div>
@@ -1150,8 +1138,8 @@ F1 score for training set: 1.0
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Predicting labels using ExtraTreesClassifier...
 Done!
-Prediction time (secs): 0.013
-F1 score for test set: 0.7913669064748202
+Prediction time (secs): 0.003
+F1 score for test set: 0.766917293233
 </pre>
 </div>
 </div>
@@ -1165,7 +1153,7 @@ F1 score for test set: 0.7913669064748202
 <div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">train_predict</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">],</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_predict</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">],</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 <span class="n">train_predict</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">200</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">200</span><span class="p">],</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 <span class="n">train_predict</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 </pre></div>
@@ -1184,41 +1172,41 @@ F1 score for test set: 0.7913669064748202
 Training set size: 100
 Training ExtraTreesClassifier...
 Done!
-Training time (secs): 0.086
+Training time (secs): 0.070
 Predicting labels using ExtraTreesClassifier...
 Done!
-Prediction time (secs): 0.007
+Prediction time (secs): 0.003
 F1 score for training set: 1.0
 Predicting labels using ExtraTreesClassifier...
 Done!
-Prediction time (secs): 0.007
-F1 score for test set: 0.7659574468085107
+Prediction time (secs): 0.004
+F1 score for test set: 0.736842105263
 ------------------------------------------
 Training set size: 200
 Training ExtraTreesClassifier...
 Done!
-Training time (secs): 0.068
+Training time (secs): 0.062
 Predicting labels using ExtraTreesClassifier...
 Done!
-Prediction time (secs): 0.008
+Prediction time (secs): 0.003
 F1 score for training set: 1.0
 Predicting labels using ExtraTreesClassifier...
 Done!
-Prediction time (secs): 0.008
-F1 score for test set: 0.75
+Prediction time (secs): 0.003
+F1 score for test set: 0.751879699248
 ------------------------------------------
 Training set size: 300
 Training ExtraTreesClassifier...
 Done!
-Training time (secs): 0.077
+Training time (secs): 0.065
 Predicting labels using ExtraTreesClassifier...
 Done!
-Prediction time (secs): 0.009
+Prediction time (secs): 0.003
 F1 score for training set: 1.0
 Predicting labels using ExtraTreesClassifier...
 Done!
-Prediction time (secs): 0.007
-F1 score for test set: 0.7591240875912408
+Prediction time (secs): 0.003
+F1 score for test set: 0.766917293233
 </pre>
 </div>
 </div>
@@ -1232,23 +1220,165 @@ F1 score for test set: 0.7591240875912408
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="5.-Choosing-the-Best-Model">5. Choosing the Best Model<a class="anchor-link" href="#5.-Choosing-the-Best-Model">&#182;</a></h2><ul>
-<li>Based on the experiments you performed earlier, in 1-2 paragraphs explain to the board of supervisors what single model you chose as the best model. Which model is generally the most appropriate based on the available data, limited resources, cost, and performance?</li>
-</ul>
-<p>The training time of SVM achieve the shortest time with 0.01 sec, where the Adaboost and the Extremely Randomized Trees achieved 0.06 0.1 respectively. This is expected, considering the fact that SVM is usually fast model.</p>
-<p>Prediction in all cases is ~ 10 times lower than the corresponding training time (SVM 0.003 Adaboost 0.005 Extremely Randomized Trees 0.010).</p>
-<p>F1 score for the SVM model depict decreasing trend as Training set size increase, where F1 score for the Adaboost and Extremely Randomized Trees depict increasing trend.</p>
-<p>Considering the above, and the given problem limitations, the most appropriate algorithm is the Adaboost. The main reason for that is the nature of the data set, which is expected to be large and even larger in the feature. SVM is the fastest model, but the performance of the mode decrease for larger training size. Adaboost provides a stable or even increasing performance as the training set increase and reasonable computation time that is longer than the SVM but shorter than the Extremely Randomized Trees.</p>
-<ul>
-<li>In 1-2 paragraphs explain to the board of supervisors in layman's terms how the final model chosen is supposed to work (for example if you chose a Decision Tree or Support Vector Machine, how does it make a prediction).</li>
-</ul>
-<p>AdaBoost uses a number of training sample to pick a number of good 'classifiers'. AdaBoost will look at a number of classifiers and find out which is the best predictor of a label based on the sample. After it has chosen the best classifier it will continue to find another until some threshold is reached and those classifiers combined together will provide the end result.</p>
-<ul>
-<li>Fine-tune the model. Use Gridsearch with at least one important parameter tuned and with at least 3 settings. Use the entire training set for this.</li>
-<li>What is the model's final F<sub>1</sub> score?
-F1 score for test set: 0.79</li>
-</ul>
+<section>
+<header>
+   <h3>SVC</h3>
+</header>
+</section><table>
+<thead><tr>
+<th style="text-align:center">Dataset</th>
+<th style="text-align:center">Training Time</th>
+<th style="text-align:center">Prediction Time</th>
+<th style="text-align:center">Training F1 Score</th>
+<th style="text-align:center">Test F1 Score         </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Training 300</td>
+<td style="text-align:center">0.016</td>
+<td style="text-align:center">0.004</td>
+<td style="text-align:center">0.876</td>
+<td style="text-align:center">0.783 </td>
+</tr>
+<tr>
+<td style="text-align:center">Training 200</td>
+<td style="text-align:center">0.008</td>
+<td style="text-align:center">0.002</td>
+<td style="text-align:center">0.867</td>
+<td style="text-align:center">0.781 </td>
+</tr>
+<tr>
+<td style="text-align:center">Training 100</td>
+<td style="text-align:center">0.003</td>
+<td style="text-align:center">0.002</td>
+<td style="text-align:center">0.877</td>
+<td style="text-align:center">0.774</td>
+</tr>
+</tbody>
+</table>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<section>
+<header>
+   <h3>AdaBoostClassifier</h3>
+</header>
+</section><table>
+<thead><tr>
+<th style="text-align:center">Dataset</th>
+<th style="text-align:center">Training Time</th>
+<th style="text-align:center">Prediction Time</th>
+<th style="text-align:center">Training F1 Score</th>
+<th style="text-align:center">Test F1 Score         </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Training 300</td>
+<td style="text-align:center">0.200</td>
+<td style="text-align:center">0.012</td>
+<td style="text-align:center">0.863</td>
+<td style="text-align:center">0.781 </td>
+</tr>
+<tr>
+<td style="text-align:center">Training 200</td>
+<td style="text-align:center">0.197</td>
+<td style="text-align:center">0.011</td>
+<td style="text-align:center">0.892</td>
+<td style="text-align:center">0.828 </td>
+</tr>
+<tr>
+<td style="text-align:center">Training 100</td>
+<td style="text-align:center">0.202</td>
+<td style="text-align:center">0.016</td>
+<td style="text-align:center">0.948</td>
+<td style="text-align:center">0.766</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<section>
+<header>
+   <h3>ExtraTreesClassifier</h3>
+</header>
+</section><table>
+<thead><tr>
+<th style="text-align:center">Dataset</th>
+<th style="text-align:center">Training Time</th>
+<th style="text-align:center">Prediction Time</th>
+<th style="text-align:center">Training F1 Score</th>
+<th style="text-align:center">Test F1 Score         </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Training 300</td>
+<td style="text-align:center">0.049</td>
+<td style="text-align:center">0.002</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">0.766 </td>
+</tr>
+<tr>
+<td style="text-align:center">Training 200</td>
+<td style="text-align:center">0.049</td>
+<td style="text-align:center">0.002</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">0.751 </td>
+</tr>
+<tr>
+<td style="text-align:center">Training 100</td>
+<td style="text-align:center">0.046</td>
+<td style="text-align:center">0.002</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">0.736</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="5.-Choosing-the-Best-Model">5. Choosing the Best Model<a class="anchor-link" href="#5.-Choosing-the-Best-Model">&#182;</a></h2><ul>
+<li>Based on the experiments and the results, a short explaintion about the optimal model of choice. The comparison will consider  the available data, limited resources, cost, and performance?</li>
+</ul>
+<p>The training time for  SVM  is  0.01 sec, Adaboost 0.2 and for Extremely Randomized Trees 0.05.
+Prediction time for  SVM  is  0.003 sec, Adaboost 0.01 and for Extremely Randomized Trees 0.002.
+F1 score for the SVM is 0.78, Adaboost 0.79, and for Extremely Randomized Trees 0.75. (Running the model with different random state provides different results, but the  difference is not significant).</p>
+<p>Considering the above, and the given problem limitations, the most appropriate algorithm is the Adaboost. Adaboost performed best when considering the Prediction time and the performance. The long training time is not significant if we consider the fact that the problem is not real time and the data set is quite small. The school will definitely will prefer more accurate model than faster model.</p>
+<ul>
+<li>A short explenation in layman's terms how the AdaBoost is trained and predict.</li>
+</ul>
+<p>AdaBoost uses a number of training samples to pick a number of good 'classifiers'. In this case we consider classifiers as the features that describe each student. Good features (classifiers) will be features that distinguish between students that need intervention to  students that do not need interventions.  AdaBoost will look at a number of classifiers and find out which is the best predictor of a label (intervention) based on the sample. After it has chosen the best classifier it will continue to find another classifier until some threshold is reached and those classifiers combined together will provide the end result.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Fine-tune-the-model.-Use-Gridsearch.">Fine-tune the model. Use Gridsearch.<a class="anchor-link" href="#Fine-tune-the-model.-Use-Gridsearch.">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -1257,25 +1387,47 @@ F1 score for test set: 0.79</li>
 <div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="c"># TODO: Fine-tune your model and report the best F1 score</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Fine-tune your model and report the best F1 score</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">svm</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
 
-<span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">svm</span>
+<span class="c1">#Grid search</span>
+<span class="n">regressor</span> <span class="o">=</span> <span class="n">AdaBoostClassifier</span><span class="p">(</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">class_weight</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+                                                       <span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;gini&#39;</span><span class="p">,</span> 
+                                                       <span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                                                       <span class="n">max_features</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+                                                       <span class="n">max_leaf_nodes</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+                                                       <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                                                       <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+                                                       <span class="n">min_weight_fraction_leaf</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+                                                       <span class="n">presort</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+                                                       <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+                                                       <span class="n">splitter</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">),</span>
+                               <span class="n">random_state</span> <span class="o">=</span> <span class="mi">42</span><span class="p">)</span>
 
-
-<span class="c">#Grid search</span>
-<span class="n">regressor</span> <span class="o">=</span> <span class="n">AdaBoostClassifier</span><span class="p">()</span>
-<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;n_estimators&#39;</span><span class="p">:(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">150</span><span class="p">)}</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">:(</span> <span class="mi">115</span><span class="p">,</span><span class="mi">110</span><span class="p">),</span> <span class="s1">&#39;learning_rate&#39;</span> <span class="p">:(</span><span class="mf">0.006</span><span class="p">,</span> <span class="mf">0.005</span><span class="p">),</span> <span class="s1">&#39;algorithm&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;SAMME.R&#39;</span><span class="p">]}</span>
 
 <span class="k">def</span> <span class="nf">performance_metric</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">prediction</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">prediction</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="s">&#39;yes&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">prediction</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="s1">&#39;yes&#39;</span><span class="p">)</span>
 
-<span class="n">scorer</span> <span class="o">=</span> <span class="n">make_scorer</span><span class="p">(</span><span class="n">performance_metric</span><span class="p">,</span> <span class="n">greater_is_better</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
+<span class="n">scorer</span> <span class="o">=</span> <span class="n">make_scorer</span><span class="p">(</span><span class="n">performance_metric</span><span class="p">,</span> <span class="n">greater_is_better</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
 <span class="n">reg</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">regressor</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">scorer</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_all</span><span class="p">,</span> <span class="n">y_all</span><span class="p">)</span>
+<span class="n">reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="n">clf</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">best_estimator_</span>
+</pre></div>
 
-<span class="nb">print</span> <span class="p">(</span><span class="n">clf</span><span class="p">)</span>
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="p">(</span><span class="n">clf</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -1288,8 +1440,12 @@ F1 score for test set: 0.79</li>
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>AdaBoostClassifier(algorithm=&apos;SAMME.R&apos;, base_estimator=None,
-          learning_rate=1.0, n_estimators=2, random_state=None)
+<pre>AdaBoostClassifier(algorithm=&apos;SAMME.R&apos;,
+          base_estimator=DecisionTreeClassifier(class_weight=None, criterion=&apos;gini&apos;, max_depth=3,
+            max_features=None, max_leaf_nodes=None, min_samples_leaf=2,
+            min_samples_split=2, min_weight_fraction_leaf=0.1,
+            presort=False, random_state=42, splitter=&apos;best&apos;),
+          learning_rate=0.005, n_estimators=115, random_state=42)
 </pre>
 </div>
 </div>
@@ -1300,10 +1456,10 @@ F1 score for test set: 0.79</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">train_predict</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_predict</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -1320,15 +1476,15 @@ F1 score for test set: 0.79</li>
 Training set size: 300
 Training AdaBoostClassifier...
 Done!
-Training time (secs): 0.007
+Training time (secs): 0.781
 Predicting labels using AdaBoostClassifier...
 Done!
-Prediction time (secs): 0.001
-F1 score for training set: 0.8278867102396513
+Prediction time (secs): 0.050
+F1 score for training set: 0.833333333333
 Predicting labels using AdaBoostClassifier...
 Done!
-Prediction time (secs): 0.001
-F1 score for test set: 0.7887323943661971
+Prediction time (secs): 0.029
+F1 score for test set: 0.802816901408
 </pre>
 </div>
 </div>
@@ -1336,6 +1492,19 @@ F1 score for test set: 0.7887323943661971
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>What is the model's final F<sub>1</sub> score?
+F1 score for test set: 0.8</li>
+</ul>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1355,7 +1524,7 @@ F1 score for test set: 0.7887323943661971
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre> 
+<div class=" highlight hl-ipython2"><pre><span></span> 
 </pre></div>
 
 </div>
